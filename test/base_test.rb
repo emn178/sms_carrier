@@ -359,7 +359,7 @@ class BaseTest < ActiveSupport::TestCase
 
     sms = CarrierWithCallback.welcome
     assert_equal ["+886912345678", "+886963852741"], sms.to
-    assert_equal "hello world", sms.body
+    assert_equal "X-Special-Header: special indeed!\nFrom: \nTo: [\"+886912345678\", \"+886963852741\"]\nBody: hello world\n", sms.to_s
     assert_equal "special indeed!", sms["X-Special-Header"].to_s
   end
 

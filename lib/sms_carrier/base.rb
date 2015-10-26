@@ -1,6 +1,7 @@
 require 'active_support/core_ext/string/inflections'
 require 'active_support/core_ext/hash/except'
 require 'active_support/core_ext/module/anonymous'
+require 'active_support/core_ext/hash/reverse_merge'
 
 require 'sms_carrier/sms'
 require 'sms_carrier/log_subscriber'

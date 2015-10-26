@@ -1,6 +1,6 @@
 module SmsCarrier
   class Sms
-    attr_accessor :body, :from, :to, :options, :perform_deliveries, :raise_delivery_errors, :delivery_handler
+    attr_accessor :body, :from, :options, :perform_deliveries, :raise_delivery_errors, :delivery_handler
 
     def initialize
       @options = {}
