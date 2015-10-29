@@ -68,7 +68,7 @@ sms.deliver_later
 sms.deliver_later(wait_until: Date.tomorrow.noon)
 sms.deliver_later(wait: 1.week)
 ```
-Options will be defined by Active Job, please refer to [Active Job](https://github.com/rails/rails/blob/7f18ea14c893cb5c9f04d4fda9661126758332b5/activejob/lib/active_job/enqueuing.rb#L32).
+Options are defined by Active Job, please refer to [Active Job](https://github.com/rails/rails/blob/7f18ea14c893cb5c9f04d4fda9661126758332b5/activejob/lib/active_job/enqueuing.rb#L32).
 
 ### Setting defaults
 You can set up default settings in carrier by `default` method.
