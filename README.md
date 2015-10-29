@@ -61,6 +61,15 @@ Or you can send SMS without carrier and template:
 SmsCarrier::Base.sms(from: "+886987654321", to: "+886912345678", body: "Your token is #{token}, please confirm your phone number").deliver_now
 ```
 
+### Deliver Later
+SMS Carrier use Active Job like Action Mailer. So you can deliver SMS later, too:
+```Ruby
+sms.deliver_later
+sms.deliver_later(wait_until: Date.tomorrow.noon)
+sms.deliver_later(wait: 1.week)
+```
+Options will be defined by Active Job, please refer to [Active Job](https://github.com/rails/rails/blob/7f18ea14c893cb5c9f04d4fda9661126758332b5/activejob/lib/active_job/enqueuing.rb#L32).
+
 ### Setting defaults
 You can set up default settings in carrier by `default` method.
 ```Ruby
@@ -98,12 +107,12 @@ class RegistrationCarrier < ApplicationCarrier
 end
 ```
 
-### Customized Delivery Method
+### Delivery Methods
 You can also refer to the projects:
-[twilio-carrier](https://github.com/emn178/twilio-carrier): Twilio SMS service.  
-[yunpian-carrier](https://github.com/emn178/yunpian-carrier): Yunpian(云片) SMS service.  
-[dynamic-carrier](https://github.com/emn178/dynamic-carrier): A delivery method layer that decides the delivery method dynamically by your rules.  
-[virtual_sms](https://github.com/emn178/virtual_sms): You can send SMS to a virtual SMS box instead of real SMS service in development environment.  
+* [twilio-carrier](https://github.com/emn178/twilio-carrier): Twilio SMS service.
+* [yunpian-carrier](https://github.com/emn178/yunpian-carrier): Yunpian(云片) SMS service.
+* [dynamic-carrier](https://github.com/emn178/dynamic-carrier): A delivery method layer that decides the delivery method dynamically by your rules.
+* [virtual_sms](https://github.com/emn178/virtual_sms): You can send SMS to a virtual SMS box instead of real SMS service in development environment.
 
 You can implement your delivery method. 
 ```Ruby
