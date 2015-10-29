@@ -1,0 +1,16 @@
+Description:
+============
+    Stubs out a new carrier and its views. Passes the carrier name, either
+    CamelCased or under_scored, and an optional list of emails as arguments.
+
+    This generates a carrier class in app/carriers and invokes your template
+    engine and test framework generators.
+
+Example:
+========
+    rails generate carrier Notifications signup forgot_password invoice
+
+    creates a Notifications carrier class and test:
+        Carrier:     app/carriers/notifications_carrier.rb
+        Test:        test/carriers/notifications_carrier_test.rb
+        Rspec:       spec/carriers/notifications_carrier_spec.rb

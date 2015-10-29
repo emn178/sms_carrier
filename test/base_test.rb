@@ -363,6 +363,11 @@ class BaseTest < ActiveSupport::TestCase
     assert_equal "special indeed!", sms["X-Special-Header"].to_s
   end
 
+  test "carrier should get carrier_name" do
+    sms = BaseCarrier.test_carrier_name
+    assert_equal "base_carrier", sms.options[:carrier_name]
+  end
+
   protected
 
     # Execute the block setting the given values and restoring old values after

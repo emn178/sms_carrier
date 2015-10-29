@@ -82,4 +82,10 @@ class MessageDeliveryTest < ActiveSupport::TestCase
     end
   end
 
+  test 'should set message obj' do
+    sms = SmsCarrier::Base.sms(:body => 'AAA')
+    ref = sms
+    sms.__setobj__(SmsCarrier::Base.sms(:body => 'BBB'))
+    assert_equal 'BBB', ref.body
+  end
 end

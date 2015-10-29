@@ -33,4 +33,8 @@ class BaseCarrier < SmsCarrier::Base
     sms(template_name: "welcome")
     nil
   end
+
+  def test_carrier_name
+    sms(:body => '', :carrier_name => carrier_name)
+  end
 end

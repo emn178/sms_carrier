@@ -275,11 +275,7 @@ module SmsCarrier
         templates_name = options.delete(:template_name) || action_name
 
         template = lookup_context.find(templates_name, templates_path)
-        if template.nil?
-          raise ActionView::MissingTemplate.new(templates_path, templates_name, templates_path, false, 'carrier')
-        else
-          return render(template: template)
-        end
+        return render(template: template)
       end
     end
 

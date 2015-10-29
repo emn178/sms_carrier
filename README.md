@@ -73,6 +73,62 @@ You can also set up in rails config, eg. `config/environments/production.rb`
 config.sms_carrier.default_options = { from: "+886987654321" }
 ```
 
+### Generators
+You can run following commands to generate carriers:
+
+    rails g carrier [name] [action] [action]...
+
+Eg
+
+    rails g carrier registration welcome
+
+It creates a Registration carrier class and test:
+```
+Carrier:     app/carriers/registration_carrier.rb
+Test:        test/carriers/registration_carrier_test.rb
+or
+RSpec:       spec/carriers/registration_carrier_spec.rb
+```
+And class looks like this:
+```Ruby
+class RegistrationCarrier < ApplicationCarrier
+  def welcome
+    # ...
+  end
+end
+```
+
+### Customized Delivery Method
+You can also refer to the projects:
+[twilio-carrier](https://github.com/emn178/twilio-carrier): Twilio SMS service.  
+[yunpian-carrier](https://github.com/emn178/yunpian-carrier): Yunpian(云片) SMS service.  
+[dynamic-carrier](https://github.com/emn178/dynamic-carrier): A delivery method layer that decides the delivery method dynamically by your rules.  
+[virtual_sms](https://github.com/emn178/virtual_sms): You can send SMS to a virtual SMS box instead of real SMS service in development environment.  
+
+You can implement your delivery method. 
+```Ruby
+class MyCarrier
+  attr_accessor :settings
+
+  def initialize(settings)
+    self.settings = settings
+  end
+
+  def deliver!(sms)
+    # sms.to is Array
+    # my_deliver(sms.from, sms.to, sms.body)
+  end
+end
+SmsCarrier::Base.add_delivery_method :my, MyCarrier
+```
+In your Rails project, you can set up in configuration:
+```Ruby
+config.sms_carrier.delivery_method = :my
+config.sms_carrier.my_settings = {
+  :settings => :pass_to_initialize
+}
+```
+
 ### Difference with Action Mailer
 * SMS Carrier removed preview.
 * SMS Carrier removed attachments feature.

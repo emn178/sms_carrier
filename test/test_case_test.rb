@@ -26,3 +26,15 @@ class CrazyStringNameCarrierTest < SmsCarrier::TestCase
     assert_equal TestTestCarrier, self.class.carrier_class
   end
 end
+
+class CrazyNilCarrierTest < SmsCarrier::TestCase
+  begin
+    tests nil 
+  rescue => e
+    @@error = e
+  end
+
+  def test_set_carrier_class_manual_using_nil
+    assert_equal SmsCarrier::NonInferrableCarrierError, @@error.class
+  end
+end
